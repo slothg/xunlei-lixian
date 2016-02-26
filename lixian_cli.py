@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding:utf-8 -*-
 
 from lixian_commands.util import *
 import lixian_help

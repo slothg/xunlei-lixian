@@ -697,7 +697,9 @@ class XunleiClient(object):
 			return
 		else:
 			msg = response_info.get('msg')
-			assert not msg, repr(msg.decode('utf-8'))
+			#assert not msg, repr(msg.decode('utf-8'))
+			if msg:
+				raise AssertionError(msg)
 			assert code == len(urls), 'invalid response code: %s' % code
 
 	def commit_torrent_task(self, data):
