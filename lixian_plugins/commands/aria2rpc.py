@@ -78,7 +78,7 @@ def execute_download_aria2rpc(args):
             print("\033[32mAdd aria2 task[id=%s] %s\033[0m" % (result[u"result"], name))
 
 
-@command(usage='concurrently download tasks in aria2')
+@command(usage='concurrently download tasks in aria2 with rpc')
 @command_line_parser()
 @with_parser(parse_login)
 @command_line_option('all')
