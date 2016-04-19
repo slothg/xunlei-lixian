@@ -1,4 +1,6 @@
 
+import platform
+
 def file_path_verification_code_reader(path):
     def reader(image):
         with open(path, 'wb') as output:
@@ -30,6 +32,7 @@ def ascii_imgcat_verification_code_reader(image_data):
 def default_verification_code_reader(args):
     if args.verification_code_handler == 'ascii':
         return ascii_verification_code_reader
+    elif args.verification_code_handler == 'terminal' and platform.system() == 'Darwin':
+        return ascii_imgcat_verification_code_reader
     elif args.verification_code_path:
         return file_path_verification_code_reader(args.verification_code_path)
-    return ascii_imgcat_verification_code_reader
