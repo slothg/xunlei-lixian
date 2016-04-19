@@ -73,7 +73,7 @@ def output_tasks(tasks, columns, args, top=True):
 			for k in columns:
 				if k == 'n':
 					if top:
-						print '#%d' % t['#'],
+						print '#\033[34m%d\033[0m' % t['#'],
 				elif k == 'id':
 					print t.get('index', t['id']),
 				elif k == 'name':
