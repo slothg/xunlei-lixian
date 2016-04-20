@@ -51,23 +51,27 @@ def addarpc(args):
             if not subs:
                 continue
             if single_file:
-                files.append((subs[0]['xunlei_url'], subs[0]['name'], None))
+                files.append((subs[0]['xunlei_url'], subs[0]['name'], None, task['original_url']))
             else:
                 for f in subs:
-                    files.append((f['xunlei_url'], f['name'], task['name']))
+                    files.append((f['xunlei_url'], f['name'], task['name'], task['original_url']))
         else:
-            files.append((task['xunlei_url'], task['name'], None))
+            files.append((task['xunlei_url'], task['name'], None, task['original_url']))
 
-    for url, name, dir in files:
+    for url, name, dir, original_url in files:
         if type(url) == unicode:
             url = url.encode(default_encoding)
         if dir:
             dir = dir.encode(default_encoding)
 
+        urls = [url]
+        if original_url.startswith("http"):
+            urls.append(original_url)
+
         jsonreq = json.dumps({"jsonrpc": "2.0", "id": "qwer",
                               "method": "aria2.addUri",
                               "params": [
-                                         [url],
+                                         urls,
                                          {
                                              "out": name.encode(default_encoding),
                                              "continue": "true",
