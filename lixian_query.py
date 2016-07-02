@@ -416,7 +416,10 @@ def parse_limit(args):
 		return limit
 
 def build_query(client, args):
-	if args.input:
+	if args.input is '-' or args.I is True:
+		import sys
+		args._left.extend(line.strip() for line in sys.stdin.readlines() if line.strip())
+	elif args.input:
 		import fileinput
 		args._left.extend(line.strip() for line in fileinput.input(args.input) if line.strip())
 	load_default_queries() # IMPORTANT: init default queries

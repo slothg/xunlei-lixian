@@ -68,7 +68,12 @@ def execute_download_aria2rpc(args):
                               ]
                               })
         # print(jsonreq)
-        c = urllib2.urlopen("http://127.0.0.1:6800/jsonrpc", jsonreq)
+        host = '127.0.0.1'
+        if args.dev is True:
+            host = '192.168.0.2'
+
+        print("Add to aria2c server:%s" % host)
+        c = urllib2.urlopen("http://%s:6800/jsonrpc" % host, jsonreq)
         # {u'jsonrpc': u'2.0', u'id': u'qwer', u'result': u'f1257fa333f235e6'}
         result = c.read()
         if result is None or result == "":
@@ -82,8 +87,10 @@ def execute_download_aria2rpc(args):
 @command_line_parser()
 @with_parser(parse_login)
 @command_line_option('all')
+@command_line_option('dev', default=False)
 def download_aria2rpc(args):
     '''
-    usage: lx download-aria2rpc -j 5 [id|name]...
+    usage: lx download-aria2rpc -j 5 -h dev [id|name]...
     '''
+    print(args)
     execute_download_aria2rpc(args)
