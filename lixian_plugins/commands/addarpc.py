@@ -35,6 +35,9 @@ def addarpc(args):
     '''
     usage:
         python lixian_cli.py addarpc url
+        python lixian_cli.py addarpc -i url.txt
+        python lixian_cli.py addarpc --input=url.txt
+        cat url | python lixian_cli.py addarpc -I
         python lixian_cli.py addarpc 1.torrent
         python lixian_cli.py addarpc torrent-info-hash
         python lixian_cli.py addarpc --bt http://xxx/xxx.torrent

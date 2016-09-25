@@ -92,5 +92,5 @@ def download_aria2rpc(args):
     '''
     usage: lx download-aria2rpc -j 5 -h dev [id|name]...
     '''
-    print(args)
+    #print(args)
     execute_download_aria2rpc(args)
